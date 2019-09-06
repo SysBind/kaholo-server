@@ -1,12 +1,12 @@
 import mongoose, { Schema, Document } from 'mongoose';
 import { ApiModelProperty } from '@nestjs/swagger';
 
-export interface IPerson extends Document {
+export interface IVault extends Document {
   name: string;
 }
 
-export const PersonSchema = new Schema({
+export const VaultSchema = new Schema({
   name: { type: String, required: true },
 });
 
-export default mongoose.model<IPerson>('Person', PersonSchema);
+export default mongoose.model<IVault>('Person', VaultSchema);
