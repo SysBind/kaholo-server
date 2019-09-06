@@ -4,6 +4,9 @@ import { CoreService } from './core.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { VaultModule } from './vault/vault.module';
 import { RouterModule, Routes } from 'nest-router';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const routes: Routes = [
   {
@@ -13,9 +16,7 @@ const routes: Routes = [
 ];
 @Module({
   imports: [
-    MongooseModule.forRoot(
-      'mongodb+srv://admin:7vXYF4nNu8B9SnH5@cluster0-qnjcz.mongodb.net/matt?retryWrites=true&w=majority',
-    ),
+    MongooseModule.forRoot(process.env.MONGODB_URL),
     RouterModule.forRoutes(routes),
     VaultModule,
   ],
