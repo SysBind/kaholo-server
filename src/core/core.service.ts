@@ -5,6 +5,6 @@ import { Model } from 'mongoose';
 @Injectable()
 export class CoreService {
   getHello(): string {
-    return 'Hello World!';
+    return 'Serve SPA!';
   }
 }

@@ -16,7 +16,7 @@ describe('CoreController', () => {
 
   describe('root', () => {
     it('should return "Hello World!"', () => {
-      expect(coreController.getHello()).toBe('Hello World!');
+      expect(coreController.getHello()).toBe('Serve SPA!');
     });
   });
 });

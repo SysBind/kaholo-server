@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body } from '@nestjs/common';
 import { VaultService } from './vault.service';
 import { IVault } from './model/vault';
 
-@Controller('vault')
+@Controller()
 export class VaultController {
   constructor(private readonly vaultService: VaultService) {}
 

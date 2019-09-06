@@ -6,7 +6,7 @@ import { Model } from 'mongoose';
 @Injectable()
 export class VaultService {
   constructor(
-    @InjectModel('Vault') private readonly personModel: Model<IVault>,
+    @InjectModel('Vault') private readonly vaultModel: Model<IVault>,
   ) {}
 
   getVaultList(): string {
@@ -14,7 +14,7 @@ export class VaultService {
   }
 
   async createVault(vaultData: IVault): Promise<IVault> {
-    const vault = new this.personModel(vaultData);
+    const vault = new this.vaultModel(vaultData);
     return await vault.save();
   }
 }
