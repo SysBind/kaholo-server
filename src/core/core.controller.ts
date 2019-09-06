@@ -6,7 +6,7 @@ export class CoreController {
   constructor(private readonly coreService: CoreService) {}
 
   @Get()
-  getHello(): string {
+  get(): string {
     return this.coreService.getHello();
   }
 }

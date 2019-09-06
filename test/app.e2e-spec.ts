@@ -1,23 +1,38 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import * as request from 'supertest';
-import { AppModule } from './../src/app.module';
+import request from 'supertest';
+import { CoreModule } from './../src/core/core.module';
+import { CoreService } from './../src/core/core.service';
+import {
+  NestFastifyApplication,
+  FastifyAdapter,
+} from '@nestjs/platform-fastify';
 
-describe('AppController (e2e)', () => {
-  let app;
+describe('CoreController (e2e)', () => {
+  const coreService = { get: () => 'Serve SPA' };
+  let core: NestFastifyApplication;
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [AppModule],
-    }).compile();
+      imports: [CoreModule],
+    })
+      .overrideProvider(CoreService)
+      .useValue(coreService)
+      .compile();
 
-    app = moduleFixture.createNestApplication();
-    await app.init();
+    core = moduleFixture.createNestApplication<NestFastifyApplication>(
+      new FastifyAdapter(),
+    );
+    await core.init;
   });
 
   it('/ (GET)', () => {
-    return request(app.getHttpServer())
+    return request(core.getHttpServer())
       .get('/')
       .expect(200)
-      .expect('Hello World!');
+      .expect('Serve SPA!');
+  });
+
+  afterAll(async () => {
+    await core.close();
   });
 });
