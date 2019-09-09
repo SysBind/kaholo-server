@@ -1,8 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { VaultController } from './vault.controller';
-import { VaultService } from './vault.service';
+import { VaultService } from '../shared/vault/vault.service';
 import { getModelToken } from '@nestjs/mongoose';
-import VaultModel from './model/vault';
+import VaultModel from '../shared/vault/model/vault';
 
 describe('Vault Controller', () => {
   let controller: VaultController;
