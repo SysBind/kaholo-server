@@ -1,16 +1,33 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "declaration": true,
-    "removeComments": true,
-    "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "target": "es2017",
+    "emitDecoratorMetadata": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "declaration": true,
+    "forceConsistentCasingInFileNames": true,
+    "lib": ["es2016"],
+    "module": "commonjs",
+    "noEmitOnError": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "pretty": true,
     "sourceMap": true,
-    "outDir": "./dist",
+    "strictPropertyInitialization": false,
+    "target": "es2017",
     "baseUrl": "./",
+    "outDir": "./dist",
+    "esModuleInterop": true,
     "incremental": true,
-    "esModuleInterop": true
+    "typeRoots": ["types", "node_modules/@types"],
+    "types": ["node", "jest", "mongoose", "supertest", "socket.io"]
   },
-  "exclude": ["node_modules", "dist"]
+  "files": ["types/index.d.ts"],
+  "include": [
+    "./src/**/*", 
+    "./test/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+  ]
 }

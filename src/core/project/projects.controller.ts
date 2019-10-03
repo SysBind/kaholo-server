@@ -1,14 +1,14 @@
 import { Body, Controller, HttpException, HttpStatus, Post } from '@nestjs/common';
 import { ProjectsService } from '../shared/projects/projects.service';
 import { CreateProjectsEntryDto } from './dto/create-project.entry-dto';
-import { IProjectExitDto } from './dto/create-project.exit-dto';
+import { ProjectExitDtoInterface } from './dto/create-project.exit-dto';
 
 @Controller()
 export class ProjectsController {
   constructor(private projectsService: ProjectsService) {}
 
   @Post()
-  async setSomeData(@Body() createVaultDto: CreateProjectsEntryDto): Promise<IProjectExitDto> {
+  async createNewProject(@Body() createVaultDto: CreateProjectsEntryDto): Promise<ProjectExitDtoInterface> {
     try {
     return await this.projectsService.create(createVaultDto);
     } catch (err) {

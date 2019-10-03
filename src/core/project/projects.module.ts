@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { ProjectsController } from './Projects.controller';
+import { ProjectsController } from './projects.controller';
 import { SharedModule } from '../shared/shared.module';
 
 @Module({

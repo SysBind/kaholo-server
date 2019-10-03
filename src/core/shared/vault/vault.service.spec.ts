@@ -10,7 +10,6 @@ describe('VaultService', () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         VaultService,
-        VaultService,
         {
           provide: getModelToken('Vault'),
           useValue: VaultModel,

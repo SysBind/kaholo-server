@@ -1,24 +1,24 @@
 import mongoose, { Schema, Document } from 'mongoose';
-import { IAgent } from '../../agents/model/agents.model';
-import { IGroup } from '../../groups/model/group.model';
+import { AgentInterface } from '../../agents/model/agents.model';
+import { GroupInterface } from '../../groups/model/group.model';
 
-export interface IMap {
+export interface MapInterface {
   name: string;
   description?: string;
   archived?: boolean;
-  agents: [string | IAgent];
-  groups: [string | IGroup];
+  agents: [string | AgentInterface];
+  groups: [string | GroupInterface];
   queue?: number;
   processResponse?: string;
   apiResponseCodeReference?: string;
 }
 
-export interface IMapDocument extends Document, IMap {
+export interface MapDocumentInterface extends Document, MapInterface {
   name: string;
   description?: string;
   archived?: boolean;
-  agents: [string | IAgent];
-  groups: [string | IGroup];
+  agents: [string | AgentInterface];
+  groups: [string | GroupInterface];
   queue?: number;
   processResponse?: string;
   apiResponseCodeReference?: string;
@@ -38,4 +38,4 @@ const mapSchema = new Schema({
 mapSchema.statics.autocompleteKey = 'name';
 mapSchema.statics.autocompleteValueField = '_id';
 
-export const Map = mongoose.model<IMapDocument>('Map', mapSchema, 'maps');
+export const map = mongoose.model<MapDocumentInterface>('Map', mapSchema, 'maps');

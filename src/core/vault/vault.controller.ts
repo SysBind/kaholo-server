@@ -1,5 +1,5 @@
 import { Controller, Get, Post, Body } from '@nestjs/common';
-import { IVault } from '../shared/vault/model/vault';
+import { VaultInterface } from '../shared/vault/model/vault';
 import { VaultService } from '../shared/vault/vault.service';
 import { CreateVaultDto } from './vault.dto';
 
@@ -13,7 +13,7 @@ export class VaultController {
   }
 
   @Post()
-  async setSomeData(@Body() createVaultDto: CreateVaultDto): Promise<IVault> {
-    return await this.vaultService.createVault(createVaultDto);
+  setSomeData(@Body() createVaultDto: CreateVaultDto): Promise<VaultInterface> {
+    return this.vaultService.createVault(createVaultDto);
   }
 }

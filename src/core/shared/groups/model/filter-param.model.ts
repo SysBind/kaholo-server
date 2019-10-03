@@ -2,7 +2,7 @@ import { Schema } from 'mongoose';
 
 const COMPARISON = ['gte', 'gt', 'contains', 'lte', 'lt', 'equal'];
 
-export interface IFilterParam {
+export interface FilterParamInterface {
   field?: string;
   value?: string;
   filterType?: string;

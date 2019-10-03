@@ -1,22 +1,21 @@
 import { Injectable } from '@nestjs/common';
-import { IProjectDocument } from './model/projects.model';
+import { ProjectDocumentInterface } from './model/projects.model';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateProjectsEntryDto } from '../../project/dto/create-project.entry-dto';
-import { IProjectExitDto } from '../../project/dto/create-project.exit-dto';
+import { ProjectExitDtoInterface } from '../../project/dto/create-project.exit-dto';
 import { NotificationsGateway } from '../websockets/notifications.gateway';
 
 @Injectable()
 export class ProjectsService {
   constructor(
     private notificationsGateway: NotificationsGateway,
-    @InjectModel('Project') private readonly createdProject: Model<IProjectDocument>) {
+    @InjectModel('Project') private readonly createdProject: Model<ProjectDocumentInterface>) {
   }
 
-  async create(createCatDto: CreateProjectsEntryDto): Promise<IProjectExitDto> {
-    const createdProject = new this.createdProject(createCatDto);
+  async create(createCatDto: CreateProjectsEntryDto): Promise<ProjectExitDtoInterface> {
     try {
-      const savedProject = await createdProject.save();
+      const savedProject = await this.createdProject.create(createCatDto);
 
       this.notificationsGateway.notify({
         type: 'success',

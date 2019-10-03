@@ -1,7 +1,7 @@
 import { ApiModelProperty } from '@nestjs/swagger';
-import { IVault } from '../shared/vault/model/vault';
+import { VaultInterface } from '../shared/vault/model/vault';
 
-export class CreateVaultDto implements IVault {
+export class CreateVaultDto implements VaultInterface {
   @ApiModelProperty()
   readonly name: string;
 }

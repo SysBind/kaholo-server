@@ -1,13 +1,13 @@
 import { ApiModelProperty } from '@nestjs/swagger';
 
-export interface IProjectEntryDto {
+export interface ProjectEntryDtoInterface {
   name: string;
   description?: string;
   archived?: boolean;
   maps: [string];
 }
 
-export class CreateProjectsEntryDto implements IProjectEntryDto {
+export class CreateProjectsEntryDto implements ProjectEntryDtoInterface {
   @ApiModelProperty()
   readonly name: string;
   @ApiModelProperty()

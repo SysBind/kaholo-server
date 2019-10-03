@@ -1,14 +1,14 @@
 import mongoose, { Schema, Document } from 'mongoose';
-import { filterParamSchema, IFilterParam } from './filter-param.model';
-import { IAgent } from '../../agents/model/agents.model';
+import { filterParamSchema, FilterParamInterface } from './filter-param.model';
+import { AgentInterface } from '../../agents/model/agents.model';
 
-export interface IGroup {
+export interface GroupInterface {
   name: string;
-  agents: [string | IAgent];
-  filters: [IFilterParam];
+  agents: [string | AgentInterface];
+  filters: [FilterParamInterface];
 }
 
-export interface IGroupDocument extends IGroup, Document {}
+export interface GroupDocumentInterface extends GroupInterface, Document {}
 
 const groupSchema = new Schema({
   name: {type: String, required: true},
@@ -16,4 +16,4 @@ const groupSchema = new Schema({
   filters: [filterParamSchema],
 });
 
-export const Group = mongoose.model<IGroupDocument>('Group', groupSchema, 'groups');
+export const group = mongoose.model<GroupDocumentInterface>('Group', groupSchema, 'groups');

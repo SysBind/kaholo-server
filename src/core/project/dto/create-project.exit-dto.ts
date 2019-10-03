@@ -1,14 +1,14 @@
 import { ApiModelProperty } from '@nestjs/swagger';
 import { IMap } from '../../shared/maps/model/map.model';
 
-export interface IProjectExitDto {
+export interface ProjectExitDtoInterface {
   name: string;
   description?: string;
   archived?: boolean;
   maps: [string | IMap];
 }
 
-export class CreateProjectsExitDto implements IProjectExitDto {
+export class CreateProjectsExitDto implements ProjectExitDtoInterface {
   @ApiModelProperty()
   readonly name: string;
   @ApiModelProperty()

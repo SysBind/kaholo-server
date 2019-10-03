@@ -1,14 +1,14 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
-export interface IVault {
+export interface VaultInterface {
   name: string;
 }
-export interface IVaultDocument extends Document, IVault {
+export interface VaultDocumentInterface extends Document, VaultInterface {
   name: string;
 }
 
-export const VaultSchema = new Schema({
+export const vaultSchema = new Schema({
   name: { type: String, required: true },
 });
 
-export default mongoose.model<IVaultDocument>('Person', VaultSchema);
+export default mongoose.model<VaultDocumentInterface>('Person', vaultSchema);

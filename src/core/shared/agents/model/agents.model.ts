@@ -1,16 +1,16 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
-export interface IAgent {
+export interface AgentInterface {
   name?: string;
   url: string;
   publicUrl: string;
   key: string;
   sshKey: string;
-  attributes: [any];
+  attributes: [];
   isDeleted: boolean;
 }
 
-export interface IAgentDocument extends IAgent, Document {
+export interface AgentDocumentInterface extends AgentInterface, Document {
 }
 
 const agentSchema = new Schema({
@@ -29,4 +29,4 @@ agentSchema.set('toJSON', {
   },
 });
 
-export const Agent = mongoose.model<IAgentDocument>('Agent', agentSchema, 'agents');
+export const agent = mongoose.model<AgentDocumentInterface>('Agent', agentSchema, 'agents');

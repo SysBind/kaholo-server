@@ -1,24 +1,24 @@
 import mongoose, { Schema, Document } from 'mongoose';
-import { IMap } from '../../maps/model/map.model';
+import { MapInterface } from '../../maps/model/map.model';
 
-export interface IProject {
+export interface ProjectInterface {
   name: string;
   description?: string;
   archived?: boolean;
-  maps: [string | IMap];
+  maps: [string | MapInterface];
 }
 
-export interface IProjectDocument extends IProject, Document {
+export interface ProjectDocumentInterface extends ProjectInterface, Document {
 }
 
-export const ProjectSchema = new Schema({
+export const projectSchema = new Schema({
   name: { type: String, required: true },
   description: String,
   archived: { type: Boolean, default: false },
   maps: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Map' }],
 }, { timestamps: true });
 
-ProjectSchema.statics.autocompleteKey = 'name';
-ProjectSchema.statics.autocompleteValueField = '_id';
+projectSchema.statics.autocompleteKey = 'name';
+projectSchema.statics.autocompleteValueField = '_id';
 
-export const ProjectModel = mongoose.model<IProjectDocument>('Project', ProjectSchema, 'projects');
+export const project = mongoose.model<ProjectDocumentInterface>('Project', projectSchema, 'projects');
