@@ -1,6 +1,6 @@
 import jsf from './json-schema-faker.wrapper';
-import { Project } from 'src/core/shared/projects/model/projects.model';
-import { Map } from 'src/core/shared/maps/model/map.model';
+import { project } from 'src/core/shared/projects/model/projects.model';
+import { map } from 'src/core/shared/maps/model/map.model';
 
 
 function getSimpleMapSchema() {
@@ -32,9 +32,9 @@ async function createMap(projectId, mapName) {
     const generatedMap = generateSimpleMap();
     generatedMap.name = mapName || generatedMap.name;
     try {
-        const map = await Map.create(generatedMap);
-        await addMapToProject(projectId, map.id);
-        return map;
+        const newMap = await map.create(generatedMap);
+        await addMapToProject(projectId, newMap.id);
+        return newMap;
     } catch (err) {
         return err;
     }
@@ -42,7 +42,7 @@ async function createMap(projectId, mapName) {
 
 async function addMapToProject(projectId, mapId) {
     try {
-        await Project.findByIdAndUpdate(
+        await project.findByIdAndUpdate(
             { _id: projectId },
             { $push: { maps: mapId } }
         );

@@ -1,5 +1,3 @@
-import socket from 'socket.io-client';
-
 export function randomIdx(length: number) {
     return Math.floor(Math.random() * length);
 }
