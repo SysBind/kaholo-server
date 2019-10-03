@@ -1,17 +1,18 @@
 import socket from 'socket.io-client';
 
-export function randomIdx(length) {
+export function randomIdx(length: number) {
     return Math.floor(Math.random() * length);
 }
 
-export function connectToSocket(url = 'http://localhost:3000/') {
-    const io = socket(url);
-    return new Promise(resolve => {
-        io.on('connect', () => {
-            resolve(io);
-        });
-    });
-}
+// export function connectToSocket(url = 'http://localhost:3000/') {
+//     const io = socket(url);
+//     console.log(url, 332121)
+//     return new Promise(resolve => {
+//         io.on('connect', () => {
+//             resolve(io);
+//         });
+//     });
+// }
 
 // export async function generateMapAndProject() {
 //     const mapStructureTestDataManager = new TestDataManager(MapStructure);

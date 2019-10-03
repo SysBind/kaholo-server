@@ -19,6 +19,19 @@ describe('Projects API tests', () => {
     await testDataManager.clear();
   });
 
+
+  describe('Negative', () => {
+
+    describe(`POST /create`, () => {
+      it(`should respond with a 500 status code`, () => {
+         return supertest(baseApiURL)
+          .post(`/projects`)
+          .send()
+          .expect(500);
+      });
+    });
+  });
+
   describe('Positive', () => {
 
     describe(`POST /create`, () => {
@@ -33,15 +46,4 @@ describe('Projects API tests', () => {
     });
   });
 
-  describe('Negative', () => {
-
-    describe(`POST /create`, () => {
-      it(`should respond with a 500 status code`, done => {
-        return supertest(baseApiURL)
-          .post(`/projects`)
-          .send()
-          .expect(500, done);
-      });
-    });
-  });
 });

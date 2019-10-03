@@ -1,4 +1,11 @@
+
+import { Test } from '@nestjs/testing';
+
 export default async function teardown() {
-    await global.app.close();
-    await global.databaseServer.stop();
+    try {
+        await global.databaseServer.stop();
+        process.exit(0);
+    } catch (err) {
+        console.log(err)
+    }
 }

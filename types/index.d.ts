@@ -6,8 +6,10 @@ declare global {
     interface ProcessEnv {
         MONGODB_URL: string;
         NODE_ENV: 'test';
+        WEBSOCKET_URL?: string;
     }
     interface Global {
+        io: SocketIOClient.Socket;
         app: NestFastifyApplication;
         databaseServer: MongoMemoryServer;
     }

@@ -5,19 +5,14 @@ import {
 } from '@nestjs/platform-fastify';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { CoreModule } from './core/core.module';
-import SocketIO from 'socket.io';
 
 export default async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
     CoreModule,
     new FastifyAdapter(),
   );
-
   
   app.setGlobalPrefix('api');
-
-  const io = SocketIO(app.getHttpServer());
-
   const options = new DocumentBuilder()
     .setTitle('Kaholo')
     .setDescription('The Kaholo API description')
@@ -28,9 +23,6 @@ export default async function bootstrap() {
   const document = SwaggerModule.createDocument(app, options);
 
   SwaggerModule.setup('api/docs', app, document);
-
-  // tslint:disable-next-line:no-console
-  io.on('connect', () => console.log('Socket.io has connected!'));
 
   await app.listen(3000);
 

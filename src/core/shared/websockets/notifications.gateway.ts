@@ -1,9 +1,6 @@
 import {
   WebSocketGateway,
   WebSocketServer,
-  SubscribeMessage,
-  OnGatewayConnection,
-  OnGatewayDisconnect,
 } from '@nestjs/websockets';
 import { Server } from 'socket.io';
 
@@ -15,7 +12,7 @@ export interface NotificationInterface {
   type: notificationType;
 }
 
-@WebSocketGateway(80, {namespace: 'notifications'})
+@WebSocketGateway()
 export class NotificationsGateway {
 
   @WebSocketServer() server: Server | undefined;
